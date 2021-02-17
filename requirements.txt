@@ -1,0 +1,17 @@
+numpy
+torch
+torchvision
+nltk
+tensorflow
+benepar==0.1.3
+scipy==1.2.1
+sklearn
+spacy
+gensim==3.0
+networkx==1.11
+transformers
+pycortex
+nibabel
+tqdm
+zipf
+ipykernel
