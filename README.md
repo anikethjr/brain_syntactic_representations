@@ -1,18 +1,18 @@
 # Syntactic representations in the human brain: beyond effort-based metrics
 
-The code base for our paper on building effective syntactic representations to study syntax processing in the human brain. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this paper if you use this code:
+The code base for our paper (https://doi.org/10.1101/2020.06.16.155499) on building effective syntactic representations to study syntax processing in the human brain. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this paper if you use this code:
 
 ```bibtex
 @article {Reddy2020.06.16.155499,
 	author = {Reddy, Aniketh Janardhan and Wehbe, Leila},
 	title = {Syntactic representations in the human brain: beyond effort-based metrics},
 	elocation-id = {2020.06.16.155499},
-	year = {2020},
+	year = {2021},
 	doi = {10.1101/2020.06.16.155499},
 	publisher = {Cold Spring Harbor Laboratory},
-	abstract = {We are far from having a complete mechanistic understanding of the brain computations involved in language processing and of the role that syntax plays in those computations. Most language studies do not computationally model syntactic structure, and most studies that do model syntactic processing use effort-based metrics. These metrics capture the effort needed to process the syntactic information given by every word [9, 10, 25]. They can reveal where in the brain syntactic processing occurs, but not what features of syntax are processed by different brain regions. Here, we move beyond effort-based metrics and propose explicit features capturing the syntactic structure that is incrementally built while a sentence is being read. Using these features and functional Magnetic Resonance Imaging (fMRI) recordings of participants reading a natural text, we study the brain representation of syntax. We find that our syntactic structure-based features are better than effort-based metrics at predicting brain activity in various parts of the language system. We show evidence of the brain representation of complex syntactic information such as phrase and clause structures. We see that regions well-predicted by syntactic features are distributed in the language system and are not distinguishable from those processing semantics. Our results call for a shift in the approach used for studying syntactic processing.Competing Interest StatementThe authors have declared no competing interest.},
-	URL = {https://www.biorxiv.org/content/early/2020/10/09/2020.06.16.155499},
-	eprint = {https://www.biorxiv.org/content/early/2020/10/09/2020.06.16.155499.full.pdf},
+	abstract = {We are far from having a complete mechanistic understanding of the brain computations involved in language processing and of the role that syntax plays in those computations. Most language studies do not computationally model syntactic structure and most studies that do model syntactic processing use effort-based metrics. These metrics capture the effort needed to process the syntactic information given by every word. They can reveal where in the brain syntactic processing occurs, but not what features of syntax are processed by different brain regions. Here, we move beyond effort-based metrics and propose explicit features capturing the syntactic structure that is incrementally built while a sentence is being read. Using these features and functional Magnetic Resonance Imaging (fMRI) recordings of participants reading a natural text, we study the brain representation of syntax. We find that our syntactic structure-based features are better than effort-based metrics at predicting brain activity in various parts of the language system. We show evidence of the brain representation of complex syntactic information such as phrase and clause structures. We see that regions well-predicted by syntactic features are distributed in the language system and are not distinguishable from those processing semantics. Our results call for a shift in the approach used for studying syntactic processing.Competing Interest StatementThe authors have declared no competing interest.},
+	URL = {https://www.biorxiv.org/content/early/2021/02/17/2020.06.16.155499},
+	eprint = {https://www.biorxiv.org/content/early/2021/02/17/2020.06.16.155499.full.pdf},
 	journal = {bioRxiv}
 }
 ```
