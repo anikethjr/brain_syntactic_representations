@@ -21,7 +21,7 @@ The code base for our paper on building effective syntactic representations to s
 
 All of the results were obtained using a machine with 28 CPU cores, 126 GB RAM and a CUDA-capable GPU. Our analyses were performed using iPython notebooks with Python3.6 kernels. We have tested this code on CentOS Linux 8. We recommend using a Linux-based environment to run our code. The analysis pipeline is fairly compute-intensive and it took us about 4 days to run it. Expect the runtime to be significantly longer if you are using a system with less than 12 cores. Our code does not make very heavy use of a GPU. Thus, an entry level graphics card such as an Nvidia RTX 2060 should be sufficient. It is possible to run the code even without a GPU but it might take longer to generate some features.
 
-The Python packages needed to run our code can be installed by running the install_python_dependencies.sh script:
+The Python packages needed to run our code can be installed by running the `install_python_dependencies.sh` script:
 ```bash
 bash install_python_dependencies.sh
 ```
