@@ -20,11 +20,11 @@ Finally, download the ROIs created by Fedorenko et al. (2010) [4] from here - ht
 
 ## Reproducing Our Results
 
-The preprocessed fMRI data we use have been uploaded here - https://drive.google.com/file/d/1CtGpSrxsueilF0vTyv7PiCu3vN6AuJ3Z/view?usp=sharing. Please download the file and extract it to the directory in which the code has been cloned. The data should be saved in a folder called `sub_space_data`. 
+The preprocessed fMRI data we use have been uploaded here - https://drive.google.com/file/d/1aYEZZSyrlo0UqswDBUiGzE3kGl3RcCn8/view?usp=sharing. Please download the file and extract it to the directory in which the code has been cloned. The data should be saved in a folder called `sub_space_data`. 
 
 Note that we cannot provide the anatomical data needed to visualize subject space results to protect the anonymity of the subjects. However, we provide the binary masks and transforms needed to transform subject space results to MNI space. These were obtained using pycortex.
 
-Also, we provide all of the main files needed to generate our figures and tables since running our full pipeline can take a long time. These include the features we generate, the R^2 scores and the significance testing results among others.
+Also, we provide all of the main files needed to generate our figures and tables since running our full pipeline can take a long time. These include the features we generate, the R^2 scores and the significance testing results among others. The features are included along with the code in the `features` folder. The R^2 scores and significance testing results files need to be downloaded from https://drive.google.com/file/d/103erZKvjPeia71-1TJ5YV7u048mJ1Afr/view?usp=sharing and the two folders `predictions` and `predictions_mni` need to copied over to the folder containing the code.
 
 Please follow these steps to reproduce our results using this codebase:
 
