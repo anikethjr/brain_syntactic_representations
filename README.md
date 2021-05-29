@@ -77,7 +77,7 @@ Note that:
 	7. aggregated_contrege_comp_pos_dep_tags_all_complexity_metrics_diff_pos_dep_tags_all_complexity_metrics = `{CC, PD, CM, PU} - {PD, CM, PU}`
 	8. aggregated_contrege_incomp_pos_dep_tags_all_complexity_metrics_diff_pos_dep_tags_all_complexity_metrics = `{CI, PD, CM, PU} - {PD, CM, PU}`
 	9. aggregated_incontrege_pos_dep_tags_all_complexity_metrics_diff_pos_dep_tags_all_complexity_metrics = `{INC, PD, CM, PU} - {PD, CM, PU}`
-	10. aggregated_bert_PCA_dims_15_contrege_incomp_pos_dep_tags_node_count_diff_aggregated_contrege_incomp_pos_dep_tags_node_count = `{BERT, CI, PD, CMF, PU} - {CI, PD, CMF, PU}`
+	10. aggregated_bert_PCA_dims_15_contrege_incomp_pos_dep_tags_node_count_diff_aggregated_contrege_incomp_pos_dep_tags_node_count = `{BERT, CI, PD, CM, PU} - {CI, PD, CM, PU}`
 
 16. False Discovery Rate correction is then performed for all of the significance tests as described in the paper by running the `perform_FDR_correction.ipynb` notebook. For the punctuation feature, we obtain files of the form `SubjectName_sig_group_corrected.npy` and for all the other tests, files of the form `SubjectName_sig_bootstrap_group_corrected.npy` are obtained. These files are stored in the same subfolders of the `predictions` folder that contain the uncorrected p-val files.
 
