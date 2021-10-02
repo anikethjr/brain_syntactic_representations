@@ -1,4 +1,4 @@
-# Syntactic representations in the human brain: beyond effort-based metrics
+# Can fMRI reveal the representation of syntactic structure in the brain?
 
 The code base for our paper (https://doi.org/10.1101/2020.06.16.155499) on building effective syntactic representations to study syntax processing in the human brain. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this paper if you use this code:
 
