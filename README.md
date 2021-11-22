@@ -3,7 +3,7 @@
 The code base for our paper on understanding syntactic representations in the human brain using naturalistic fMRI data. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this work if you use our code:
 
 ```bibtex
-@inproceedings{reddy2021can,
+@inproceedings{reddywehbe2021,
   title={Can fMRI reveal the representation of syntactic structure in the brain?},
   author={Reddy, Aniketh Janardhan and Wehbe, Leila},
   booktitle={Thirty-Fifth Conference on Neural Information Processing Systems},
