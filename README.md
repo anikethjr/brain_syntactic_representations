@@ -1,25 +1,19 @@
 # Can fMRI reveal the representation of syntactic structure in the brain?
 
-The code base for our paper (https://doi.org/10.1101/2020.06.16.155499) on building effective syntactic representations to study syntax processing in the human brain. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this paper if you use this code:
+The code base for our paper on understanding syntactic representations in the human brain using naturalistic fMRI data. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this work if you use our code:
 
 ```bibtex
-@article {Reddy2020.06.16.155499,
-	author = {Reddy, Aniketh Janardhan and Wehbe, Leila},
-	title = {Syntactic representations in the human brain: beyond effort-based metrics},
-	elocation-id = {2020.06.16.155499},
-	year = {2021},
-	doi = {10.1101/2020.06.16.155499},
-	publisher = {Cold Spring Harbor Laboratory},
-	abstract = {We are far from having a complete mechanistic understanding of the brain computations involved in language processing and of the role that syntax plays in those computations. Most language studies do not computationally model syntactic structure and most studies that do model syntactic processing use effort-based metrics. These metrics capture the effort needed to process the syntactic information given by every word. They can reveal where in the brain syntactic processing occurs, but not what features of syntax are processed by different brain regions. Here, we move beyond effort-based metrics and propose explicit features capturing the syntactic structure that is incrementally built while a sentence is being read. Using these features and functional Magnetic Resonance Imaging (fMRI) recordings of participants reading a natural text, we study the brain representation of syntax. We find that our syntactic structure-based features are better than effort-based metrics at predicting brain activity in various parts of the language system. We show evidence of the brain representation of complex syntactic information such as phrase and clause structures. We see that regions well-predicted by syntactic features are distributed in the language system and are not distinguishable from those processing semantics. Our results call for a shift in the approach used for studying syntactic processing.Competing Interest StatementThe authors have declared no competing interest.},
-	URL = {https://www.biorxiv.org/content/early/2021/02/17/2020.06.16.155499},
-	eprint = {https://www.biorxiv.org/content/early/2021/02/17/2020.06.16.155499.full.pdf},
-	journal = {bioRxiv}
+@inproceedings{reddy2021can,
+  title={Can fMRI reveal the representation of syntactic structure in the brain?},
+  author={Reddy, Aniketh Janardhan and Wehbe, Leila},
+  booktitle={Thirty-Fifth Conference on Neural Information Processing Systems},
+  year={2021}
 }
 ```
 
 ## Dependencies
 
-All of the results were obtained using a machine with 28 CPU cores, 126 GB RAM and a CUDA-capable GPU. Our analyses were performed using iPython notebooks with Python3.6 kernels. We have tested this code on CentOS Linux 8. We recommend using a Linux-based environment to run our code. The analysis pipeline is fairly compute-intensive and it took us about 4 days to run it. Expect the runtime to be significantly longer if you are using a system with less than 12 cores. Our code does not make very heavy use of a GPU. Thus, an entry level graphics card such as an Nvidia RTX 2060 should be sufficient. It is possible to run the code even without a GPU but it might take longer to generate some features.
+This work used the Bridges system, which is supported by NSF award number ACI-1445606, at the Pittsburgh Supercomputing Center (PSC). All of the results were obtained using a machine with 14 CPU cores, 128 GB RAM and a CUDA-capable GPU. Our analyses were performed using iPython notebooks with Python3.6 kernels. We have tested this code on CentOS Linux 8. We recommend using a Linux-based environment to run our code. The analysis pipeline is fairly compute-intensive and it took us about 4 days to run it. Expect the runtime to be significantly longer if you are using a system with less than 8 cores. Our code does not make very heavy use of a GPU. Thus, an entry level graphics card such as an Nvidia RTX 2060 should be sufficient. It is possible to run the code even without a GPU but it might take longer to generate some features.
 
 The Python packages needed to run our code can be installed by running the `install_python_dependencies.sh` script:
 ```bash
@@ -35,11 +29,11 @@ Finally, download the ROIs created by Fedorenko et al. (2010) [4] from here - ht
 
 ## Reproducing Our Results
 
-The preprocessed fMRI data we use have been uploaded here - https://drive.google.com/file/d/1CtGpSrxsueilF0vTyv7PiCu3vN6AuJ3Z/view?usp=sharing. Please download the file and extract it to the directory in which the code has been cloned. The data should be saved in a folder called `sub_space_data`. 
+The preprocessed fMRI data we use have been uploaded here - https://drive.google.com/file/d/1aYEZZSyrlo0UqswDBUiGzE3kGl3RcCn8/view?usp=sharing. Please download the file and extract it to the directory in which the code has been cloned. The data should be saved in a folder called `sub_space_data`. 
 
 Note that we cannot provide the anatomical data needed to visualize subject space results to protect the anonymity of the subjects. However, we provide the binary masks and transforms needed to transform subject space results to MNI space. These were obtained using pycortex.
 
-Also, we provide all of the main files needed to generate our figures and tables since running our full pipeline can take a long time. These include the features we generate, the R^2 scores and the significance testing results among others.
+Also, we provide all of the main files needed to generate our figures and tables since running our full pipeline can take a long time. These include the features we generate (in the `features` folder), the R^2 scores and the significance testing results (in the `predictions` and `predictions_mni` folders) among others.
 
 Please follow these steps to reproduce our results using this codebase:
 
@@ -47,7 +41,7 @@ Please follow these steps to reproduce our results using this codebase:
 
 2. The text which is presented to the subjects is in the `chapter9.txt` file. The string on each line of the file is sequentially presented (there are 5176 lines). The + symbol is a fixation cross that is periodically shown to the subjects. Since we use word-level features, all of the files which contain these features are numpy arrays of the form (5176, number of feature dimensions). The rows which correspond to the presentation of a + are filled with zeros.
 
-3. Generate the effort-based metrics - Node Count, Syntactic Surprisal, Word Frequency and Word Length, for every presented word by running the `generate_node_count.ipynb`, `generate_syntactic_surprisal.ipynb`, `generate_word_frequency.ipynb`, `generate_word_frequencies_and_word_lengths.ipynb` notebooks respectively. The outputs are stored in the `features` folder as `node_count.npy`, `syntactic_surprisal.npy`, `word_frequency.npy` and `word_length.npy`.
+3. Generate the complexity metrics - Node Count (NC), Syntactic Surprisal (SS), Word Frequency (WF) and Word Length (WL), for every presented word by running the `generate_node_count.ipynb`, `generate_syntactic_surprisal.ipynb`, `generate_word_frequencies_and_word_lengths.ipynb` notebooks respectively. The outputs are stored in the `features` folder as `node_count.npy`, `syntactic_surprisal.npy`, `word_frequency.npy` and `word_length.npy`.
 
 4. Generate the POS tags of the presented words using the `generate_pos_tags.ipynb` notebook. The output is stored in the `features` folder as `pos_tags.npy`.
 
@@ -68,12 +62,12 @@ Please follow these steps to reproduce our results using this codebase:
 	2. syntactic_surprisal_punct.npy = `{SS, PU}`
 	3. word_frequency_punct.npy = `{WF, PU}`
 	4. word_length_punct.npy = `{WL, PU}`
-	5. all_effort_based_metrics_punct.npy = `{EF, PU}`
-	6. pos_dep_tags_all_effort_based_metrics.npy = `{PD, EF, PU}`
-	7. contrege_comp_set_X_pos_dep_tags_all_effort_based_metrics.npy = `{CC, PD, EF, PU}`
-	8. contrege_incomp_set_X_pos_dep_tags_all_effort_based_metrics.npy = `{CI, PD, EF, PU}`
-	9. incontrege_set_X_pos_dep_tags_all_effort_based_metrics.npy = `{INC, PD, EF, PU}`
-	10. bert_PCA_dims_15_contrege_incomp_set_X_pos_dep_tags_node_count.npy = `{BERT, CI, PD, EF, PU}`
+	5. all_complexity_metrics_punct.npy = `{CM, PU}`
+	6. pos_dep_tags_all_complexity_metrics.npy = `{PD, CM, PU}`
+	7. contrege_comp_set_X_pos_dep_tags_all_complexity_metrics.npy = `{CC, PD, CM, PU}`
+	8. contrege_incomp_set_X_pos_dep_tags_all_complexity_metrics.npy = `{CI, PD, CM, PU}`
+	9. incontrege_set_X_pos_dep_tags_all_complexity_metrics.npy = `{INC, PD, CM, PU}`
+	10. bert_PCA_dims_15_contrege_incomp_set_X_pos_dep_tags_node_count.npy = `{BERT, CI, PD, CM, PU}`
 
 12. We can then start training Ridge regression models and using these trained models to make predictions (training and prediction is done in a cross validated fashion as described in the paper). Run the `predictions_master_script.ipynb` notebook in order to generate all of the predictions. Predictions made using each feature group will be stored in separate subfolders in the `predictions` folder and will be in subject space (these subfolders will be named after the numpy files used to make the predictions). The R^2 scores for each subject and feature group are stored in the files of the form `SubjectName_r2s.npy`.
 
@@ -87,12 +81,12 @@ Note that:
 	2. syntactic_surprisal_punct_diff_punct_final = `{SS, PU} - {PU}`
 	3. word_frequency_punct_diff_punct_final = `{WF, PU} - {PU}`
 	4. word_length_punct_diff_punct_final = `{WL, PU} - {PU}`
-	5. all_effort_based_metrics_punct_diff_punct_final = `{EF, PU} - {PU}`
-	6. pos_dep_tags_all_effort_based_metrics_diff_all_effort_based_metrics_punct = `{PD, EF, PU} - {EF, PU}`
-	7. aggregated_contrege_comp_pos_dep_tags_all_effort_based_metrics_diff_pos_dep_tags_all_effort_based_metrics = `{CC, PD, EF, PU} - {PD, EF, PU}`
-	8. aggregated_contrege_incomp_pos_dep_tags_all_effort_based_metrics_diff_pos_dep_tags_all_effort_based_metrics = `{CI, PD, EF, PU} - {PD, EF, PU}`
-	9. aggregated_incontrege_pos_dep_tags_all_effort_based_metrics_diff_pos_dep_tags_all_effort_based_metrics = `{INC, PD, EF, PU} - {PD, EF, PU}`
-	10. aggregated_bert_PCA_dims_15_contrege_incomp_pos_dep_tags_node_count_diff_aggregated_contrege_incomp_pos_dep_tags_node_count = `{BERT, CI, PD, EFF, PU} - {CI, PD, EFF, PU}`
+	5. all_complexity_metrics_punct_diff_punct_final = `{CM, PU} - {PU}`
+	6. pos_dep_tags_all_complexity_metrics_diff_all_complexity_metrics_punct = `{PD, CM, PU} - {CM, PU}`
+	7. aggregated_contrege_comp_pos_dep_tags_all_complexity_metrics_diff_pos_dep_tags_all_complexity_metrics = `{CC, PD, CM, PU} - {PD, CM, PU}`
+	8. aggregated_contrege_incomp_pos_dep_tags_all_complexity_metrics_diff_pos_dep_tags_all_complexity_metrics = `{CI, PD, CM, PU} - {PD, CM, PU}`
+	9. aggregated_incontrege_pos_dep_tags_all_complexity_metrics_diff_pos_dep_tags_all_complexity_metrics = `{INC, PD, CM, PU} - {PD, CM, PU}`
+	10. aggregated_bert_PCA_dims_15_contrege_incomp_pos_dep_tags_node_count_diff_aggregated_contrege_incomp_pos_dep_tags_node_count = `{BERT, CI, PD, CM, PU} - {CI, PD, CM, PU}`
 
 16. False Discovery Rate correction is then performed for all of the significance tests as described in the paper by running the `perform_FDR_correction.ipynb` notebook. For the punctuation feature, we obtain files of the form `SubjectName_sig_group_corrected.npy` and for all the other tests, files of the form `SubjectName_sig_bootstrap_group_corrected.npy` are obtained. These files are stored in the same subfolders of the `predictions` folder that contain the uncorrected p-val files.
 
@@ -105,6 +99,8 @@ The syntactic information analysis can be carried out by following these steps:
 1. Run the `generate_ancestor_data_for_information_analysis.ipynb` notebook to generate numpy files that encode the ancestor information. These files are stored in the `ancestor_information_analysis` folder.
 
 2. Then run the `syntactic_information_analysis.ipynb` notebook to perform the prediction analysis. The notebook generates a CSV file called `final_syntactic_information_analysis_results.csv` that contains the prediction accuracies and the associated p-vals. The last cell of the notebook shows the label distribution for each level.
+
+To test that the BERT embeddings are better predictors of GloVe-based semantic vectors (extracted from spaCy) than the ConTreGE vectors, we first need to extract the GloVe-based semantic vectors by running the `generate_spacy_embeddings.ipynb` notebook. Then run the `compare_glove_vectors_predictivity.ipynb` notebook to train and test RidgeCV models that predict the GloVe-based semantic vectors. The outputs of the last two cells show that BERT embeddings are much predictors of these GloVe-based semantic vectors when compared to the ConTreGE vectors.
 
 ## References
 
