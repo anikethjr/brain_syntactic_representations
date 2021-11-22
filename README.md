@@ -1,10 +1,19 @@
 # Can fMRI reveal the representation of syntactic structure in the brain?
 
-The code base for our paper on understanding syntactic representations in the human brain using naturalistic fMRI data. We explain how to reproduce our results in detail and also point to our preprocessed data.
+The code base for our paper on understanding syntactic representations in the human brain using naturalistic fMRI data. We explain how to reproduce our results in detail and also point to our preprocessed data. Please cite this work if you use our code:
+
+```bibtex
+@inproceedings{reddy2021can,
+  title={Can fMRI reveal the representation of syntactic structure in the brain?},
+  author={Reddy, Aniketh Janardhan and Wehbe, Leila},
+  booktitle={Thirty-Fifth Conference on Neural Information Processing Systems},
+  year={2021}
+}
+```
 
 ## Dependencies
 
-All of the results were obtained using a machine with 28 CPU cores, 126 GB RAM and a CUDA-capable GPU in a private HPC facility. Our analyses were performed using iPython notebooks with Python3.6 kernels. We have tested this code on CentOS Linux 8. We recommend using a Linux-based environment to run our code. The analysis pipeline is fairly compute-intensive and it took us about 4 days to run it. Expect the runtime to be significantly longer if you are using a system with less than 12 cores. Our code does not make very heavy use of a GPU. Thus, an entry level graphics card such as an Nvidia RTX 2060 should be sufficient. It is possible to run the code even without a GPU but it might take longer to generate some features.
+This work used the Bridges system, which is supported by NSF award number ACI-1445606, at the Pittsburgh Supercomputing Center (PSC). All of the results were obtained using a machine with 14 CPU cores, 128 GB RAM and a CUDA-capable GPU. Our analyses were performed using iPython notebooks with Python3.6 kernels. We have tested this code on CentOS Linux 8. We recommend using a Linux-based environment to run our code. The analysis pipeline is fairly compute-intensive and it took us about 4 days to run it. Expect the runtime to be significantly longer if you are using a system with less than 8 cores. Our code does not make very heavy use of a GPU. Thus, an entry level graphics card such as an Nvidia RTX 2060 should be sufficient. It is possible to run the code even without a GPU but it might take longer to generate some features.
 
 The Python packages needed to run our code can be installed by running the `install_python_dependencies.sh` script:
 ```bash
@@ -24,7 +33,7 @@ The preprocessed fMRI data we use have been uploaded here - https://drive.google
 
 Note that we cannot provide the anatomical data needed to visualize subject space results to protect the anonymity of the subjects. However, we provide the binary masks and transforms needed to transform subject space results to MNI space. These were obtained using pycortex.
 
-Also, we provide all of the main files needed to generate our figures and tables since running our full pipeline can take a long time. These include the features we generate, the R^2 scores and the significance testing results among others. The features are included along with the code in the `features` folder. The R^2 scores and significance testing results files need to be downloaded from https://drive.google.com/file/d/103erZKvjPeia71-1TJ5YV7u048mJ1Afr/view?usp=sharing and the two folders `predictions` and `predictions_mni` need to copied over to the folder containing the code.
+Also, we provide all of the main files needed to generate our figures and tables since running our full pipeline can take a long time. These include the features we generate (in the `features` folder), the R^2 scores and the significance testing results (in the `predictions` and `predictions_mni` folders) among others.
 
 Please follow these steps to reproduce our results using this codebase:
 
@@ -32,7 +41,7 @@ Please follow these steps to reproduce our results using this codebase:
 
 2. The text which is presented to the subjects is in the `chapter9.txt` file. The string on each line of the file is sequentially presented (there are 5176 lines). The + symbol is a fixation cross that is periodically shown to the subjects. Since we use word-level features, all of the files which contain these features are numpy arrays of the form (5176, number of feature dimensions). The rows which correspond to the presentation of a + are filled with zeros.
 
-3. Generate the complexity metrics - Node Count (NC), Syntactic Surprisal (SS), Word Frequency (WF) and Word Length (WL), for every presented word by running the `generate_node_count.ipynb`, `generate_syntactic_surprisal.ipynb`, `generate_word_frequency.ipynb`, `generate_word_frequencies_and_word_lengths.ipynb` notebooks respectively. The outputs are stored in the `features` folder as `node_count.npy`, `syntactic_surprisal.npy`, `word_frequency.npy` and `word_length.npy`.
+3. Generate the complexity metrics - Node Count (NC), Syntactic Surprisal (SS), Word Frequency (WF) and Word Length (WL), for every presented word by running the `generate_node_count.ipynb`, `generate_syntactic_surprisal.ipynb`, `generate_word_frequencies_and_word_lengths.ipynb` notebooks respectively. The outputs are stored in the `features` folder as `node_count.npy`, `syntactic_surprisal.npy`, `word_frequency.npy` and `word_length.npy`.
 
 4. Generate the POS tags of the presented words using the `generate_pos_tags.ipynb` notebook. The output is stored in the `features` folder as `pos_tags.npy`.
 
@@ -90,6 +99,8 @@ The syntactic information analysis can be carried out by following these steps:
 1. Run the `generate_ancestor_data_for_information_analysis.ipynb` notebook to generate numpy files that encode the ancestor information. These files are stored in the `ancestor_information_analysis` folder.
 
 2. Then run the `syntactic_information_analysis.ipynb` notebook to perform the prediction analysis. The notebook generates a CSV file called `final_syntactic_information_analysis_results.csv` that contains the prediction accuracies and the associated p-vals. The last cell of the notebook shows the label distribution for each level.
+
+To test that the BERT embeddings are better predictors of GloVe-based semantic vectors (extracted from spaCy) than the ConTreGE vectors, we first need to extract the GloVe-based semantic vectors by running the `generate_spacy_embeddings.ipynb` notebook. Then run the `compare_glove_vectors_predictivity.ipynb` notebook to train and test RidgeCV models that predict the GloVe-based semantic vectors. The outputs of the last two cells show that BERT embeddings are much predictors of these GloVe-based semantic vectors when compared to the ConTreGE vectors.
 
 ## References
 
